@@ -9,6 +9,9 @@ const v = new Validator({
     }
 });
 
-const validatorFactory = schema => v.compile(schema);
+const validatorFactory = schema => v.compile({
+    $$strict: "remove",
+    ...schema
+});
 
 module.exports = validatorFactory;

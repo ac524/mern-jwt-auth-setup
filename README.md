@@ -3,7 +3,7 @@ A guide for getting up and running with JWT user authentication system for a Rea
 
 ## Express Prerequisites
 
-* `npm i mongoose dotenv passport passport-jwt bcryptjs`
+* `npm i mongoose dotenv passport passport-jwt bcryptjs fastest-validator`
 
 * Connect to MongoDB using `mongoose`
 
@@ -59,7 +59,7 @@ const passport = require("passport");
 
 app.use(passport.initialize());
 // Passport config
-passport.use( require("./config/jwtPassportStrategy");
+passport.use( require("./config/jwtPassportStrategy") );
 ```
 
 **Add API routes for authentication**
@@ -155,14 +155,17 @@ function LoginForm() {
         } catch(err) {
 
              // Handle error responses from the API
+             if( err.response && err.response.data ) console.log(err.response.data);
 
         }
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" ref={emailRef} placeholder="Your email" />
-            <input type="text" ref={passwordRef} placeholder="Your password" />
+            <h2>Login</h2>
+            <input type="text" ref={emailRef} placeholder="Your email" /><br />
+            <input type="password" ref={passwordRef} placeholder="Your password" /><br />
+            <button>Submit</button>
         </form>
     )
 
@@ -224,14 +227,17 @@ function RegistrationForm() {
         } catch(err) {
 
              // Handle error responses from the API. This will include
+             if( err.response && err.response.data ) console.log(err.response.data);
              
         }
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" ref={emailRef} placeholder="Your email" />
-            <input type="text" ref={passwordRef} placeholder="Your password" />
+            <h2>Register</h2>
+            <input type="text" ref={emailRef} placeholder="Your email" /><br />
+            <input type="password" ref={passwordRef} placeholder="Your password" /><br />
+            <button>Submit</button>
         </form>
     )
 

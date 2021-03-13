@@ -4,6 +4,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const util = require("util");
 
+const passwordHash = require("../config/passwordHash");
+
 // Get middleware
 const authenticateUser = require("./middleware/authenticateUser");
 const validateBodyWith = require("./middleware/validateBodyWith");
@@ -37,23 +39,29 @@ router.post("/login", validateBodyWith( loginValidator ), async (req, res) => {
       await User
         .findOne({ email })
         // Restrict the data loaded from the user model
-        .select("name email");
+        .select("name email password");
 
     if (!user) {
       // User not found by email.
-      return res.status(404).json({ emailnotfound: "Email or password is invalid." });
+      return res.status(404).json({ default: "Email or password is invalid." });
     }
 
-    const isMatch = await bcrypt.compare( password, user.password );
+    const {
+      password: encryptedPassword,
+      // User object without the password
+      ...secureUser
+    } = user._doc;
+
+    const isMatch = await bcrypt.compare( password, encryptedPassword );
     
     if( !isMatch ) {
       // User's password is invalid.
-      return res.status(404).json({ emailnotfound: "Email or password is invalid." });
+      return res.status(404).json({ default: "Email or password is invalid." });
     }
 
     const payload = {
-      id: user.id,
-      name: user.name
+      id: secureUser._id,
+      email: secureUser.email
     };
 
     // Create a signed JWT token to send back to the client for reauthentication.
@@ -65,11 +73,11 @@ router.post("/login", validateBodyWith( loginValidator ), async (req, res) => {
       }
     );
 
-    return {
+    return res.json({
       success: true,
       token: "Bearer " + token,
-      user
-    }
+      user: secureUser
+    })
   
 
   } catch( err ) {
@@ -78,6 +86,7 @@ router.post("/login", validateBodyWith( loginValidator ), async (req, res) => {
     res.status(500).json({ default: "Something went wrong trying to log in." });
 
   }
+
 });
 
 /**
@@ -87,7 +96,7 @@ router.post("/register", validateBodyWith( registerValidator ), async (req, res)
 
   try {
 
-    const { name, email, password } = req.body;
+    const { email, password } = req.body;
 
     const user = await User.findOne({ email });
 
@@ -97,14 +106,19 @@ router.post("/register", validateBodyWith( registerValidator ), async (req, res)
     }
 
     const newUser = new User({
-      name,
       email,
       password: await passwordHash( password )
     });
 
     await newUser.save();
 
-    res.json( newUser );
+    const {
+      password: encryptedPassword,
+      // User object without the password
+      ...secureUser
+    } = newUser._doc;
+
+    res.json( secureUser );
 
   } catch( err ) {
 

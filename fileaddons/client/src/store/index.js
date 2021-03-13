@@ -20,7 +20,7 @@ const reducer = ( state, { type, payload } ) => {
 
         case LOGOUT_USER:
 
-            return { ...state, userAuth: undefined };
+            return { ...state, userAuth: {} };
 
         default:
             return state;
@@ -31,7 +31,7 @@ const reducer = ( state, { type, payload } ) => {
 export const StoreProvider = ( { children } ) => {
 
     const [ store, dispatch ] = useReducer( reducer, {
-        userAuth: undefined
+        userAuth: {}
     } );
 
     return <Provider value={[store, dispatch]}>{ children }</Provider>
