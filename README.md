@@ -11,7 +11,7 @@ A guide for getting up and running with JWT user authentication system for a Rea
 
 * `npm i axios jwt-decode react-router-dom`
 
-**Note:** This guide does not currently walk through setting up any routes, but some of the authentication does import features from the `react-router-dom` library to assist with url redirects while logging out.
+**Note:** This guide does not currently walk through setting up any routes, but some of the authentication does import features from the `react-router-dom` library and requires a `BrowserRouter` component in place to assist with url redirects while logging in and out.
 
 ## Merging File Addons
 
