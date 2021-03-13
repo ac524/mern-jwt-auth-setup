@@ -121,13 +121,21 @@ export const useIsAuthenticated = () => {
 
 }
 
+export const useAuthenticatedUser = () => {
+
+    const [ { userAuth: { user } } ] = useStoreContext();
+
+    return user;
+
+}
+
 export const useLogin = () => {
 
     const [ ,dispatch ] = useStoreContext();
 
-    return async ( credential ) => {
+    return async ( credentials ) => {
     
-        const { data: { token: tokenString, user } } = await api.login( credential );
+        const { data: { token: tokenString, user } } = await api.login( credentials );
 
         const token = setAuthToken( tokenString );
 
