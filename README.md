@@ -7,7 +7,7 @@ A guide for getting up and running with JWT user authentication system for a Rea
 
 * Connect to MongoDB using `mongoose`
 
-## Express Prerequisites
+## React Prerequisites
 
 * `npm i axios jwt-decode react-router-dom`
 
