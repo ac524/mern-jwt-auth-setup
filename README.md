@@ -1,5 +1,5 @@
 # JWT Authentication Setup Guide for the MERN stack
-A guide for getting up and running with JWT user authentication system for a React application using an Express + Mongo backend.
+A guide for getting up and running with a JWT user authentication system for a React application using an Express + Mongo backend.
 
 ## Express Prerequisites
 
@@ -244,3 +244,54 @@ function RegistrationForm() {
 }
 ```
 
+### Step 4: Setup Guest and Private Routes
+
+Included in the React code are two custom components, `PrivateRoute` and `GuestRoute` that help combine `Route` from `react-router-dom` and the `useIsAuthenticated` hook from the provided `auth.js` to create automated redirects based on the current user's authentication status.
+
+* **What is a Private Route?** A private route is a route that can only be viewed by a user **who IS** actively logged into your application.
+
+* **What is a Guest Route?** A guest route is a route that can only be viewed by a user **who IS NOT** actively logged into your application.
+
+#### Using the `PrivateRoute` Component
+
+The provided `PrivateRoute` component extends the basic `Route` component from `react-router-dom` by adding a layer of logic to redirect users to a more appropriate address in the event **they have NOT logged into the system**.
+
+The `PrivateRoute` compontent will redirect users to `/` by default, but you can customize where they get sent with the `redirectTo` property.
+
+**Example Usage**
+
+Use the `PrivateRoute` component to hide the `/members` route from guest users. Guest users who try to go to `/members` will instead be sent to `/login`.
+```
+<PrivateRoute exact path="/members" redirectTo="/login" component={Members} />
+```
+
+#### Using the `GuestRoute` Component
+
+The provided `GuestRoute` component extends the basic `Route` component from `react-router-dom` by adding a layer of logic to redirect users to a more appropriate address in the event they have already logged into the system.
+
+The `GuestRoute` compontent will redirect users to `/` by default, but you can customize where they go with the `redirectTo` property.
+
+**Example Usage**
+
+Use the `GuestRoute` component to hide the `/register` route from logged in users. Logged in users who try to go to `/register` will instead be sent to `/members`.
+```
+<GuestRoute exact path="/register" redirectTo="/members" component={Register} />
+```
+#### Example Route Setup
+```
+<BrowserRouter>
+    <Switch>
+        {/* Routes open to all users */}
+        <Route path="/" exact component={HomePage} />
+        <Route path="/about" exact component={AboutPage} />
+        <Route path="/privacy" exact component={PrivacyPolicyPage} />
+
+        {/* Routes for guest (non authenticated) users */}
+        <GuestRoute exact path="/login" redirectTo="/members" component={LoginPage} />
+        <GuestRoute exact path="/register" redirectTo="/members" component={RegisterPage} />
+        
+        {/* Routes for (authenticated) users */}
+        <PrivateRoute exact path="/members" redirectTo="/login" component={MembersPage} />
+    </Switch>
+</BrowserRouter>
+```
