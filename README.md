@@ -295,3 +295,58 @@ Use the `GuestRoute` component to hide the `/register` route from logged in user
     </Switch>
 </BrowserRouter>
 ```
+
+### Step 5: Customize Templates Based on User Status
+
+Included in the provided `auth.js` utilities for React are two custom hooks that can be used in any component to create conditional templates based on the user's state.
+
+* `useIsAuthenticated` - Returns `true` or `false` based on the user's current state of authentication.
+
+* `useAuthenticatedUser` - Returns the `user` document object for the currently authenticated user or `undefined` if not available.
+
+#### Using the `useIsAuthenticated` hook
+
+The `useIsAuthenticated` hook is perfect for situations where you need to change what's displayed base on whether users are logged in or out.
+
+**Example Usage**
+
+Only render the `/register` and `/login` links for guest users and only render the `LogoutButton` for logged in users.
+```
+function MyNavBar() {
+
+    const isAuthenticated = useIsAuthenticated();
+
+    return (
+        <div className="navbar">
+            <Link to="/">Home</Link>
+            {!isAuthenticated && <Link to="/register">Register</Link>}
+            {!isAuthenticated && <Link to="/login">Login</Link>}
+            {isAuthenticated && <LogoutButton>}
+        </div>
+    );
+}
+```
+
+#### Using the `useAuthenticatedUser` hook
+
+The `useAuthenticatedUser` hook is what you'll use anywhere you need specific information about the current user.
+
+**Example Usage**
+
+Display the authenticated user's email when one exists.
+```
+function Profile() {
+
+    const user = useAuthenticatedUser();
+
+    return user && (
+        <div>
+            <h2>My Profile</h2>
+            <p>
+                <strong>Email:</strong>
+                {user.email}
+            </p>
+        </div>
+    );
+}
+```
