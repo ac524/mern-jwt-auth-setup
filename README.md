@@ -3,13 +3,13 @@ A guide for getting up and running with a JWT user authentication system for a R
 
 ## Prerequisites
 
-### Express Prerequisites
+### Express
 
 * `npm i mongoose dotenv passport passport-jwt bcryptjs fastest-validator`
 
 * Connect to MongoDB using `mongoose`
 
-### React Prerequisites
+### React
 
 * `npm i axios jwt-decode react-router-dom`
 
