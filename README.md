@@ -1,19 +1,19 @@
 # JWT Authentication Setup Guide for the MERN stack
 A guide for getting up and running with a JWT user authentication system for a React application using an Express + Mongo backend.
 
-## Express Prerequisites
+## Prerequisites
+
+### Express Prerequisites
 
 * `npm i mongoose dotenv passport passport-jwt bcryptjs fastest-validator`
 
 * Connect to MongoDB using `mongoose`
 
-## Prerequisites
-
 ### React Prerequisites
 
 * `npm i axios jwt-decode react-router-dom`
 
-### Merging File Addons
+## Merging File Addons
 
 Add / Merge all files from the `fileaddons` folder into your project structure. The `client` folder is for the React install. The rest is for the Express application.
 
