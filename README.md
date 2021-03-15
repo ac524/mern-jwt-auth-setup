@@ -306,23 +306,19 @@ Use the `GuestRoute` component to hide the `/register` route from logged in user
 ```
 <GuestRoute exact path="/register" redirectTo="/members" component={Register} />
 ```
-#### Example Route Setup
+#### Example Routes Setup
 ```
-<BrowserRouter>
-    <Switch>
-        {/* Routes open to all users */}
-        <Route path="/" exact component={HomePage} />
-        <Route path="/about" exact component={AboutPage} />
-        <Route path="/privacy" exact component={PrivacyPolicyPage} />
+{/* Routes open to all users */}
+<Route path="/" exact component={HomePage} />
+<Route path="/about" exact component={AboutPage} />
+<Route path="/privacy" exact component={PrivacyPolicyPage} />
 
-        {/* Routes for guest (non authenticated) users */}
-        <GuestRoute exact path="/login" redirectTo="/members" component={LoginPage} />
-        <GuestRoute exact path="/register" redirectTo="/members" component={RegisterPage} />
-        
-        {/* Routes for (authenticated) users */}
-        <PrivateRoute exact path="/members" redirectTo="/login" component={MembersPage} />
-    </Switch>
-</BrowserRouter>
+{/* Routes for guest (non authenticated) users */}
+<GuestRoute exact path="/login" redirectTo="/members" component={LoginPage} />
+<GuestRoute exact path="/register" redirectTo="/members" component={RegisterPage} />
+
+{/* Routes for (authenticated) users */}
+<PrivateRoute exact path="/members" redirectTo="/login" component={MembersPage} />
 ```
 
 ### Step 5: Customize Templates Based on User Status
