@@ -119,7 +119,7 @@ function App() {
 
 The next 3 sections detail using the `useLogin` and `useLogout` hooks that help simplify the steps around successfully logging a user in and out of the application while keeping the React application's state and API requests in sync.
 
-## The `useLogin` Hook - How to Log a User In
+#### The `useLogin` Hook - How to Log a User In
 The provided `useLogin` hook provides a function that assists with:
 
 * Making the API request for loging in, 
@@ -172,7 +172,7 @@ function LoginForm() {
 }
 ```
 
-## The `useLogout` Hook - How to Log a User Out
+#### The `useLogout` Hook - How to Log a User Out
 
 The provided `useLogout` hook provides a function that assists with:
 
@@ -193,7 +193,7 @@ function LogoutButton() {
 }
 ```
 
-## Registering a New User
+#### Registering a New User
 Registering a user requires the `api.register` method to be called with at least an `email` and `password` provided. Registering a new user does not automatically log them in, but the same login functionality above could be used to log a use in after successful registration.
 
 **Example Usage**
