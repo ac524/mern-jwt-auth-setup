@@ -1,6 +1,35 @@
 # JWT Authentication Setup Guide for the MERN stack
 A guide for getting up and running with a JWT user authentication system for a React application using an Express + Mongo backend.
 
+## Table of Contents
+
+* [Prerequisites](#prerequisites)
+
+    * [Express](#express)
+
+    * [React](#react)
+
+* [Merging File Addons](#merging-file-addons)
+
+* [Server Configuration](#server-configuration)
+
+    * [Step 1: Create and configure a .env file](#step-1-create-and-configure-a-env-file)
+
+
+    * [Step 2: Configure server.js](#step-2-configure-serverjs)
+
+* [React Configuration](#react-configuration)
+
+    * [Step 1: Add store provider](#step-1-add-store-provider)
+
+    * [Step 2: Set up Reauthentication](#step-2-set-up-reauthentication)
+
+    * [Step 3: Implement useLogin and useLogout Hooks](#step-3-implement-uselogin-and-uselogout-hooks)
+
+    * [Step 4: Setup Guest and Private Routes](#step-4-setup-guest-and-private-routes)
+
+    * [Step 5: Customize Templates Based on User Status](#step-5-customize-templates-based-on-user-status)
+
 ## Prerequisites
 
 ### Express
