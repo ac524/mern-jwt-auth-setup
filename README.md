@@ -33,7 +33,7 @@ The first part of this guide walks through needed additions and modifications to
 
 * Create the .env file at the root of your project
 
-* *Make sure your .gitignore file as a rule to ignore this file. This file should NEVER be committed!*
+* *Make sure your .gitignore file has a rule to ignore this file. This file should NEVER be committed!*
 
 * Add a new variable for `JWT_SECRET`.
 
