@@ -11,8 +11,6 @@ A guide for getting up and running with a JWT user authentication system for a R
 
 * `npm i axios jwt-decode react-router-dom`
 
-**Note:** This guide does not currently walk through setting up any routes, but some of the authentication does import features from the `react-router-dom` library and requires a `BrowserRouter` component in place to assist with url redirects while logging in and out.
-
 ## Merging File Addons
 
 Add / Merge all files from the `fileaddons` folder into your project structure. The `client` folder is for the React install. The rest is for the Express application.
