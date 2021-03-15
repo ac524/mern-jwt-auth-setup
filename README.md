@@ -23,7 +23,7 @@ Add / Merge all files from the `fileaddons` folder into your project structure. 
 
 * If you have already implemented your own global store, you will need to merge the two actions, `LOGIN_USER` and `LOGOUT_USER`, into your implementation. You will also then need to make sure that the `dispatch` calls in `utils/auth.js` match how your store is set up.
 
-* If you already have an `api.js` file, you will need to merge any current methods you have set up into `API` class provided in `utils/api.js`. Functionality in `utils/auth.js` requires this spefic `API` class to safely assign header information.
+* If you already have an `api.js` file, you will need to merge any current methods you have set up into `API` class provided in `utils/api.js`. Functionality in `utils/auth.js` requires this specific `API` class to safely assign header information.
 
 ## Server Configuration
 
@@ -33,7 +33,7 @@ The first part of this guide walks through needed additions and modifications to
 
 * Create the .env file at the root of your project
 
-* *Make sure your .gitignore file as a rule to ignore this file. This file should NEVER be commited!*
+* *Make sure your .gitignore file as a rule to ignore this file. This file should NEVER be committed!*
 
 * Add a new variable for `JWT_SECRET`.
 
@@ -45,7 +45,7 @@ JWT_SECRET="A random string, which is used to help generate unique keys. This ca
 
 * Open your `server.js` and add the following lines of code.
 
-**Import configuation from the .env file**
+**Import configuration from the .env file**
 
 Add at the very top of the file.
 ```
@@ -77,7 +77,7 @@ These steps require the `fileaddons/client/src` to be merged into your React app
 
 **Note:** If you have already implemented your own global store functionality you can skip this step.
 
-We want everything to have access to the store, including `App` so we are going to import into `index.js` and wrap it around everythng.
+We want everything to have access to the store, including `App` so we are going to import into `index.js` and wrap it around everything.
 
 * Inside `src/index.js` add/modify the initial JSX template to include the `StoreProvider`.
 
@@ -122,7 +122,7 @@ The next 3 sections detail using the `useLogin` and `useLogout` hooks that help 
 #### The `useLogin` Hook - How to Log a User In
 The provided `useLogin` hook provides a function that assists with:
 
-* Making the API request for loging in, 
+* Making the API request for logging in, 
 
 * Storing the JWT token for reauthentication and applying it to the api class for authenticated API requests.
 
@@ -243,3 +243,4 @@ function RegistrationForm() {
 
 }
 ```
+
