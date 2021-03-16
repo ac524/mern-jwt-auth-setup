@@ -12,7 +12,7 @@ const authorizeJwtToken = (jwtPayload, done) => {
 
     User.findById(jwtPayload.id)
         // Restrict the data loaded from the user model
-        .select("name email")
+        // .select("email")
         .then(user => {
             if (user) {
                 return done(null, user);
